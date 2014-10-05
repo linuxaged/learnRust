@@ -1,0 +1,22 @@
+use std::string::String;
+
+struct Person {
+    name: String
+}
+
+impl Person {
+    fn say(&self) {
+        println!("my name is {}",self.name);
+    }
+}
+
+fn main() {
+    let p = Person{name: String::from_str("小明")};
+    p.say();
+
+    let mut v = vec![];
+    v.push(p);
+    println!("v's len = {}" ,v.len());
+    v.pop();
+    println!("v's len = {}" ,v.len());
+}
