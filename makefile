@@ -1,8 +1,11 @@
 CC = clang
 CFLAGS = -std=c99 -pedantic -O3 -Weverything -pipe -fomit-frame-pointer -march=native -pthread
 
+RC= rustc
+RCFLAGS = --opt-level=3
+
 revcomp_rs: revcomp.rs
-	rustc --opt-level=3 revcomp.rs -o revcomp_rs
+	$(RC) $(RCFLAGS) revcomp.rs -o revcomp_rs
 
 revcomp_c: revcomp.c
 	$(CC) $(CFLAGS) revcomp.c -o revcomp_c
