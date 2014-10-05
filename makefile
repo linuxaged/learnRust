@@ -10,5 +10,11 @@ revcomp_rs: revcomp.rs
 revcomp_c: revcomp.c
 	$(CC) $(CFLAGS) revcomp.c -o revcomp_c
 
+benchmark_rs: revcomp_rs
+	time ./revcomp_rs 0 < revcomp-input.txt
+
+benchmark_c: revcomp_c
+	time ./revcomp_c 0 < revcomp-input.txt
+
 clean:
-	rm -f revcomp_c revcomp_rs stack task a.out *.o *.a
+	rm -f revcomp_c revcomp_rs stack
