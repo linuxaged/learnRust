@@ -1,14 +1,15 @@
 use std::io;
-fn main() {
-    let key = "AaCcGgTtUuMmRrWwSsYyKkVvHhDdBbNn";
-    let cmp = "TTGGCCAAAAKKYYWWSSRRMMBBDDHHVVNN";
-    let mut buff = "".to_string();
+use std::string::String;
 
+static key: &'static str = "AaCcGgTtUuMmRrWwSsYyKkVvHhDdBbNn";
+static cmp: &'static str = "TTGGCCAAAAKKYYWWSSRRMMBBDDHHVVNN";
+
+fn read_all(buff: &mut String) {
     for line in io::stdin().lines() {
         let current = line.unwrap();
         if current.as_slice().char_at(0) == '>' {
             print_buffer(buff.as_slice());
-            buff = "".to_string();
+            *buff = "".to_string();
             print!("{}", current);
         }
         else {
@@ -23,7 +24,6 @@ fn main() {
             }
        }
     }
-    print_buffer(buff.as_slice());
 }
 
 fn print_buffer(temp: &str)
@@ -40,4 +40,10 @@ fn print_buffer(temp: &str)
     if counter != 0 {
         println!("");
     }
+}
+
+fn main() {
+    let mut buff = "".to_string();
+    read_all(&mut buff);
+    print_buffer(buff.as_slice());
 }

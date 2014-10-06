@@ -16,5 +16,8 @@ benchmark_rs: revcomp_rs
 benchmark_c: revcomp_c
 	time ./revcomp_c 0 < revcomp-input.txt
 
+bench_rs: revcomp_rs
+	$(RC) $(RCFLAGS) revcomp.rs -o bench_rs
+
 clean:
-	rm -f revcomp_c revcomp_rs stack
+	rm -f bench_rs revcomp_c revcomp_rs stack
