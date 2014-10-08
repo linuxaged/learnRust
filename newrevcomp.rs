@@ -6,21 +6,21 @@ static cmp: &'static str = "TTGGCCAAAAKKYYWWSSRRMMBBDDHHVVNN";
 
 fn revcomp(buffer: &mut Vec<u8>, begin: int, end: int) {
     for ii in range(begin, end) {
-        let result = key.find();
+        let result = key.find(*buffer[ii]);
         match result {
             Some(index) => {
-                buffer[ii] = cmp[index];
+                *buffer[ii] = cmp[index];
             },
             None => ()
         }
     }
 }
 
-fn split(buffer: &Vec<u8>) {
+fn split(buffer: &mut Vec<u8>) {
     let mut split = Vec::new();
     let index = 0;
     let endline = false;
-    for x in buffer.iter() {
+    for x in *buffer.iter() {
         if (x == '<') {
             split.push(index);
             endline = true;
@@ -29,7 +29,7 @@ fn split(buffer: &Vec<u8>) {
             split.push(index);
             endline = false;
         }
-        index++;
+        index = index + 1;
     }
     spawn(proc() {
         revcomp(buffer, split[1] + 1, split[2] - 1);
@@ -45,7 +45,7 @@ fn split(buffer: &Vec<u8>) {
 fn main() {
     let result = io::stdin().read_to_end();
     match result {
-        Ok(buffer) => split(&buffer), // vec<u8>
+        Ok(mut buffer) => split(&buffer), // vec<u8>
         Err(_) => println!("error")
     }
 }
