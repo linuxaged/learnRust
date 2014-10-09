@@ -1,6 +1,6 @@
 CC = clang
-CFLAGS = -std=c99 -pedantic -O3 -Weverything -pipe -fomit-frame-pointer -march=native -pthread
-CFLAGS2 = -pipe -Wall -O3 -fomit-frame-pointer -march=native -std=c99 -D_GNU_SOURCE -mfpmath=sse -msse2 -fopenmp
+CFLAGS = -std=c99 -pipe -Wall -O3 -fomit-frame-pointer -march=native -pedantic -pthread
+CFLAGS2 = -std=c99 -pipe -Wall -O3 -fomit-frame-pointer -march=native -mfpmath=sse -msse2 -fopenmp
 
 RC= rustc
 RCFLAGS = --opt-level=3
@@ -24,7 +24,7 @@ mandelbrot_rs: mandelbrot.rs
 	$(RC) $(RCFLAGS) mandelbrot.rs -o mandelbrot_rs
 
 mandelbrot_c: mandelbrot.c
-	$(CC) $(CFLAGS) revcomp.c -o revcomp_c
+	$(CC) $(CFLAGS2) mandelbrot.c -o mandelbrot_c
 
 clean:
 	rm -f bench_rs newrevcomp revcomp_c revcomp_rs stack
