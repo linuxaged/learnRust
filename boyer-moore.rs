@@ -1,27 +1,32 @@
 use std::io::File;
 
 struct BoyerMoore {
-    pat: []int,
-    source: String,
+    pat: Vec<u8>,
+    source: Vec<u8>,
+    delta1: [int, ..256],
+    delta2: Vec<u8>,
 }
 
 impl BoyerMoore {
-    fn make_delta1(&self) -> Vec<int> {
-        let delta1: [int,..256] = [len, ..256];
-        
-        for i in range(0,self.pat.len()) {
-            delta1[pat[i]] = self.pat.len();
+    fn new(content: &str, target: &str) -> BoyerMoore {
+        BoyerMoore {
+            pat: target.to_string().into_bytes(),
+            source: content.to_string().into_bytes(),
+            delta1: [0, ..256], // actually i want to init with make_delta1()
+            delta2: vec![65u8], // init with make_delta2()
         }
-        return delta1;
     }
 
-    fn make_delta2() -> Vec<int> {
-        // add code here
+    fn make_delta1(&mut self) {
+        self.delta1 = [self.pat.len() as int, ..256];
+
+        for i in range(0,self.pat.len()) {
+            self.delta1[self.pat[i] as uint] = self.pat.len() as int;
+        }
     }
 
-    fn boyer_moore(txt: Vec<u8>, target: Vec<u8>) -> bool {
-        let len = target.len();
-
+    fn make_delta2(&mut self) {
+        // self.delta2 = ...;
     }
 }
 
@@ -29,6 +34,6 @@ impl BoyerMoore {
 
 fn main() {
     let path = Path::new("data.txt");
-    let raw_bytes: Vec<u8> = File::open(&path).read_to_end().unwrap();
-	boyer_moore(raw_bytes, "EXAMPLE".to_string().into_bytes());
+    let raw_string = File::open(&path).read_to_string().unwrap();
+	let mut boyer_moore = BoyerMoore::new(raw_string.as_slice(), "EXAMPLE");
 }
