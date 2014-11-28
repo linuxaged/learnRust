@@ -71,13 +71,13 @@ impl BoyerMoore {
     }
 }
 
-// #[test]
-// fn test_make_delta1() {
-// 	let delta1 = BoyerMoore::make_delta1("EXAMPLE".to_string().into_bytes().as_slice());
-// 	for d in range(0, delta1.len()) {
-// 		println!("[{}],{}", d, delta1[d]);
-// 	}
-// }
+#[test]
+fn test_make_delta1() {
+	let delta1 = BoyerMoore::make_delta1("EXAMPLE".to_string().into_bytes().as_slice());
+	for d in range(0, delta1.len()) {
+		println!("[{}],{}", d, delta1[d]);
+	}
+}
 
 #[test]
 fn test_make_kmp() {
