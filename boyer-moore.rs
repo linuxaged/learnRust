@@ -51,12 +51,12 @@ impl BoyerMoore {
 
     fn search(&self) -> Option<uint> {
     	if self.pat.len() == 0 {
-    		None
+    		return None
     	}
     	let mut i = self.pat.len() - 1;
     	while i < self.source.len() {
     		let mut j = (self.pat.len() - 1) as int;
-    		while (j <= 0) && (self.source[i] == self.pat[j as uint]) {
+    		while (j >= 0) && (self.source[i] == self.pat[j as uint]) {
     			i = i-1;
     			j = j-1;
     		}
@@ -90,6 +90,6 @@ fn test_make_kmp() {
 fn main() {
     let path = Path::new("/tmp/data.txt");
     let raw_string = File::open(&path).read_to_string().unwrap();
-	let result = BoyerMoore::new(raw_string.as_slice(), "EXAMPLE").search();
+	let result = BoyerMoore::new(raw_string.as_slice(), "SIMPLE").search();
 	println!("{}", result);
 }
