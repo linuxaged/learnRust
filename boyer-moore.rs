@@ -9,20 +9,26 @@ struct BoyerMoore {
 
 impl BoyerMoore {
     fn new(content: &str, target: &str) -> BoyerMoore {
+    	let pat: target.to_string().into_bytes();
+    	let source: content.to_string().into_bytes();
+    	let delta1: BoyerMoore::make_delta1(pat.as_slice());
+    	let delta2: BoyerMoore::make_delta2();
         BoyerMoore {
-            pat: target.to_string().into_bytes(),
-            source: content.to_string().into_bytes(),
-            delta1: [0, ..256], // actually i want to init with make_delta1()
-            delta2: vec![65u8], // init with make_delta2()
+            pat: pat,
+            source: source,
+            delta1: delta1,
+            delta2: delta2,
         }
     }
 
-    fn make_delta1(&mut self) {
-        self.delta1 = [self.pat.len() as int, ..256];
+    fn make_delta1(pat: &[u8]) -> [int, ..256] {
+        let mut delta1 = [pat.len() as int, ..256];
 
-        for i in range(0,self.pat.len()) {
-            self.delta1[self.pat[i] as uint] = self.pat.len() as int;
+        for i in range(0,pat.len()) {
+            delta1[pat[i] as uint] = pat.len() as int;
         }
+
+        delta1
     }
 
     fn make_delta2(&mut self) {
