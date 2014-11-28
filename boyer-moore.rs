@@ -31,6 +31,23 @@ impl BoyerMoore {
         delta1
     }
 
+    fn make_kmp(pat: &[u8]) -> Vec<u8> {
+    	let kmp: Vec<u8> = vec![0,..pat.len()];
+    	if (pat.len() <= 2) {
+    		kmp[0] = -1;
+    	} else {
+    		let index = 0;
+    		let last_is_prefix = 0; 
+    		for i in range (3, pat.len()) {
+    			if (pat[i] == pat[index]) {
+    				index++; // todo: can be out of range
+    				kmp[i] = index;
+    			}
+    		}
+    	}
+    	kmp
+    }
+
     fn make_delta2(&mut self) {
         // self.delta2 = ...;
     }
