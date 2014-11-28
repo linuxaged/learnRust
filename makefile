@@ -26,5 +26,8 @@ mandelbrot_rs: mandelbrot.rs
 mandelbrot_c: mandelbrot.c
 	$(CC) $(CFLAGS2) mandelbrot.c -o mandelbrot_c
 
+boyer-moore: boyer-moore.rs
+	$(RC) $(RCFLAGS) boyer-moore.rs -o boyer-moore
+
 clean:
-	rm -f bench_rs newrevcomp revcomp_c revcomp_rs stack
+	rm -f bench_rs newrevcomp revcomp_c revcomp_rs stack boyer-moore
