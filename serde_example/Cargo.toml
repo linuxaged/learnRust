@@ -1,0 +1,7 @@
+[package]
+name = "serde_example"
+version = "0.1.0"
+authors = ["Tracy Ma <1991md@gmail.com>"]
+
+[dependencies.serde]
+git = "https://github.com/serde-rs/serde"
