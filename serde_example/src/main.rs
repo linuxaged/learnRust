@@ -13,10 +13,10 @@ fn main() {
     let meshes = data.find("meshes").unwrap();
     let mesh_array = meshes.as_array().unwrap();
     let mesh = mesh_array[0].as_object().unwrap();
-    let length = mesh.len();
-    let mut v = vec![0f64; length];
+    let mut v = vec![0f64; 512];
     v = (json::from_value (mesh.get("vertices").unwrap().clone()) ).unwrap();
-    for pos in v {
-    	println!("{}", pos);
-    }
+    println!("{:?}", v.len());
+    // for pos in v {
+    // 	println!("{}", pos);
+    // }
  }
