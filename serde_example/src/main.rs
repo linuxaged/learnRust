@@ -23,4 +23,5 @@ fn main() {
     for pos in vertices {
     	println!("{:?}", pos);
     }
+
  }
