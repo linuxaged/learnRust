@@ -8,3 +8,6 @@ git = "https://github.com/serde-rs/serde"
 
 [dependencies.serde_macros]
 git = "https://github.com/serde-rs/serde"
+
+[dependencies]
+itertools = "0.3"
