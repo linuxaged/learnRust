@@ -3,7 +3,13 @@ name = "serde_example"
 version = "0.1.0"
 dependencies = [
  "serde 0.4.1 (git+https://github.com/serde-rs/serde)",
+ "serde_macros 0.4.1 (git+https://github.com/serde-rs/serde)",
 ]
+
+[[package]]
+name = "aster"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libc"
@@ -17,6 +23,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "quasi"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "quasi_codegen"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "aster 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "quasi_macros"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "quasi_codegen 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -38,5 +65,23 @@ version = "0.4.1"
 source = "git+https://github.com/serde-rs/serde#5f2d306f9ba58198f399adfc9a1e4b6a2cda60cf"
 dependencies = [
  "num 0.1.25 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "serde_codegen"
+version = "0.4.1"
+source = "git+https://github.com/serde-rs/serde#5f2d306f9ba58198f399adfc9a1e4b6a2cda60cf"
+dependencies = [
+ "aster 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "quasi 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "quasi_macros 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "serde_macros"
+version = "0.4.1"
+source = "git+https://github.com/serde-rs/serde#5f2d306f9ba58198f399adfc9a1e4b6a2cda60cf"
+dependencies = [
+ "serde_codegen 0.4.1 (git+https://github.com/serde-rs/serde)",
 ]
 
