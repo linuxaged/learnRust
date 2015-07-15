@@ -1,4 +1,8 @@
 #![feature(core_simd,custom_derive)]
+#![feature(test)]
+extern crate test;
+use test::Bencher;
+
 use std::simd::f32x4;
 use std::ops::{Add, Sub, Mul};
 
@@ -69,6 +73,23 @@ impl Mul for Matrix4x4 {
             w: f32x4(_w_0.0 + _w_0.1 + _w_0.2 + _w_0.3, _w_1.0 + _w_1.1 + _w_1.2 + _w_1.3, _w_2.0 + _w_2.1 + _w_2.2 + _w_2.3, _w_3.0 + _w_3.1 + _w_3.2 + _w_3.3),
         }
     }
+}
+
+fn mul_matrix() {
+    let mut mat = Matrix4x4 {
+        x: f32x4(1.0, 2.0, 3.0, 4.0),
+        y: f32x4(2.0, 3.0, 4.0, 5.0),
+        z: f32x4(3.0, 4.0, 5.0, 6.0),
+        w: f32x4(4.0, 5.0, 6.0, 7.0)
+    };
+    for _ in 0..10 {
+        mat = mat * mat
+    }
+}
+
+#[bench]
+fn bench_mul_matrix(b: &mut Bencher) {
+    b.iter(|| mul_matrix());
 }
 
 fn main() {

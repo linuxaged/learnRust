@@ -1,3 +1,6 @@
+#![feature(test)]
+extern crate test;
+use test::Bencher;
 use std::ops::{Add, Sub, Mul};
 
 #[derive(Copy, Clone, Debug)]
@@ -82,6 +85,23 @@ impl Mul for Matrix4x4 {
     		]
     	}
     }
+}
+
+fn mul_matrix() {
+	let mut mat = Matrix4x4{m: [
+			1.0, 2.0, 3.0, 4.0,
+			2.0, 3.0, 4.0, 5.0,
+			3.0, 4.0, 5.0, 6.0,
+			4.0, 5.0, 6.0, 7.0
+		]};
+	for _ in 0..10 {
+		mat = mat * mat
+	}
+}
+
+#[bench]
+fn bench_mul_matrix(b: &mut Bencher) {
+    b.iter(|| mul_matrix());
 }
 
 fn main() {
