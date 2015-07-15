@@ -2,7 +2,7 @@
 use std::simd::f32x4;
 use std::ops::{Add, Sub, Mul};
 
-#[derive(Copy, Clone, Debug, Display)]
+#[derive(Copy, Clone, Debug)]
 pub struct Matrix4x4 {
     pub x: f32x4,
     pub y: f32x4,
@@ -71,8 +71,7 @@ impl Mul for Matrix4x4 {
     }
 }
 
-#[test]
-fn test_add() {
+fn main() {
     let mat = Matrix4x4 {
         x: f32x4(1.0, 2.0, 3.0, 4.0),
         y: f32x4(2.0, 3.0, 4.0, 5.0),
