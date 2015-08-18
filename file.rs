@@ -1,10 +1,11 @@
-use std::io::File;
+use std::fs::{self, File, OpenOptions};
+use std::io::prelude::*;
+use std::path::Path;
 
 fn main() {
-	println!("i will create a file name test.txt");
-	let mut file = File::create(&Path::new("test.txt"));
-	match file.write(b"hello, world\n") {
-		Ok(()) => (),
-		Err(e) => println!("fail to write to file test.txt:{}", e),
-	}
+	let mut file = File::open(&Path::new("test.txt")).unwrap();
+	let mut content = String::new();
+	file.read_to_string(&mut content);
+	let lines:Vec<&str> = (&content).lines().collect();
+	println!("{:?}", lines.len());
 }
