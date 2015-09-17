@@ -9,4 +9,8 @@ fn main() {
     println!("!a     = {:0>8b}", !a);
     println!("a << 3 = {:0>8b}", a << 3);
     println!("a >> 3 = {:0>8b}", a >> 3);
+
+    let data: u32 = 0x8000000;
+    let mask = data & 0xf000000;
+    println!("{:x}", mask);
 }
